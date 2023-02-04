@@ -1,10 +1,7 @@
-import { Avatar } from "@mui/material";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Avatar, Box } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
-import {Box} from "@mui/material";
-import { setGlobalState, useGlobalState } from "./Global";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Welcome() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -27,12 +24,16 @@ export default function Welcome() {
       <div className="bg-slate-500 relative">
       <section  className="section h-[35rem] bg-center bg-cover text-white">
         <nav className="flex justify-around">
-          <img
+          <h1 className="text-[30px] font-[600] pl-5 pt-5 pr-5 text-white text-lrfy">
+              {" "}
+              EventEase
+          </h1>
+          {/* <img
             src="https://res.cloudinary.com/urbanclap/image/upload/images/growth/home-screen/1631097450980-d2de38.png"
             alt=""
             height="60px"
             width="200px"
-          />
+          /> */}
 
           <ul className="flex justify-evenly items-center space-x-7 text-white">
             <li>Blog</li>

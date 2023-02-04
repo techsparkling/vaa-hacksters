@@ -1,37 +1,21 @@
-import React from "react";
-import Lottie from "lottie-react";
-import { useState, useEffect } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { v4 } from "uuid";
-import { useNavigate } from "react-router-dom";
-import { getStorage, ref as ref_storage, uploadBytes,getDownloadURL  } from "firebase/storage";
-import { auth, provider } from "./config";
-import AddIcon from '@mui/icons-material/Add';
-import {IconButton} from "@mui/material";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { signInWithPopup } from "firebase/auth";
-import { setGlobalState, useGlobalState } from "./Global";
-import {InputLabel} from "@mui/material";
-import First from "../LottieFiles/signup.json";
-import FormHelperText from '@mui/material/FormHelperText';
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Divider, IconButton, InputLabel, MenuItem, TextField } from "@mui/material";
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {MenuItem} from "@mui/material";
+import { signInWithPopup } from "firebase/auth";
 import {
-    get,
     getDatabase,
-    ref,
-    set,
-    child,
-    remove,
-    update,
-    push,
-    DataSnapshot,
+    ref, update
 } from "firebase/database";
-import { Avatar, Divider, TextField } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { HdrPlus, PlusOne, Subject } from "@mui/icons-material";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { getDownloadURL, getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
+import Lottie from "lottie-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
+import First from "../LottieFiles/signup.json";
+import { auth, provider } from "./config";
+import { setGlobalState } from "./Global";
 export default function ShopDetails() {
     const [previewPic,setPreviewPic]=useState()
   const [profilePic,setProfilePic]=useState()
@@ -105,7 +89,7 @@ export default function ShopDetails() {
                     <div>
                         <h1 className="text-[30px] font-[600] pl-5 pt-5 pr-5 text-white text-lrfy">
                             {" "}
-                            LOGO
+                            EventEase
                         </h1>
                     </div>
                     <div className="grid justify-center place-items-center ">
@@ -117,12 +101,11 @@ export default function ShopDetails() {
                     </div>
                     <div>
                         <h1 className="text-[30px] font-[600] pl-5 pr-5 text-white text-center">
-                            lorem ipsum <br></br>
-                            lorem ipsum
+                            Shop Details
                         </h1>
-                        <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
+                        {/* <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
                             lorem ipsum
-                        </p>
+                        </p> */}
                     </div>
                 </div>
                 <div className="md:w-1/2 ">

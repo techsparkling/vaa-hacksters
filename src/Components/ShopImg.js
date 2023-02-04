@@ -1,30 +1,20 @@
 import React from "react";
 
-import { IconButton } from "@mui/material";
-import Lottie from "lottie-react";
-import { getStorage, ref as ref_storage, uploadBytes,getDownloadURL  } from "firebase/storage";
-import { useState, useEffect } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth, provider } from "./config";
-import { v4 } from "uuid";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { signInWithPopup } from "firebase/auth";
-import { setGlobalState, useGlobalState } from "./Global";
-import First from "../LottieFiles/signup.json";
-import {
-  get,
-  getDatabase,
-  ref,
-  set,
-  child,
-  remove,
-  update,
-  push,
-  DataSnapshot,
-} from "firebase/database";
-import { Avatar, Divider, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Divider, IconButton } from "@mui/material";
+import { signInWithPopup } from "firebase/auth";
+import {
+  getDatabase,
+  ref, update
+} from "firebase/database";
+import { getDownloadURL, getStorage, ref as ref_storage, uploadBytes } from "firebase/storage";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
+import First from "../LottieFiles/signup.json";
+import { auth, provider } from "./config";
+import { setGlobalState } from "./Global";
 export default function ShopImg() {
   const storage = getStorage();
   const [previewPic1, setPreviewPic1] = useState();
@@ -107,12 +97,11 @@ export default function ShopImg() {
           </div>
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pr-5 text-white text-center">
-              lorem ipsum <br></br>
-              lorem ipsum
+              Shop Images
             </h1>
-            <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
+            {/* <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
               lorem ipsum
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="md:w-1/2 ">
@@ -175,6 +164,7 @@ export default function ShopImg() {
                   />
 
                   <Avatar
+                    src={"https://cdn-icons-png.flaticon.com/512/148/148764.png"}
                     sx={{ width: 86, height: 86, bgcolor: "gray" }}
                   ></Avatar>
                 </IconButton>
@@ -209,7 +199,7 @@ export default function ShopImg() {
               </div>
             </div>
             <div className="grid mt-5">
-              <Divider>Click Next once everyfield is filled</Divider>
+              <Divider>Only Click Once 5 Pictures Are Uploaded</Divider>
               <button
                 className="bg-black p-5 rounded text-white w-full mt-5"
                 onClick={() => {
