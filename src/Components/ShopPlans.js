@@ -1,39 +1,20 @@
-import React from "react";
 import Lottie from "lottie-react";
-import { useState, useEffect } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { v4 } from "uuid";
+import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { getStorage, ref as ref_storage, uploadBytes,getDownloadURL  } from "firebase/storage";
-import { auth, provider } from "./config";
-import AddIcon from '@mui/icons-material/Add';
-import {Button, IconButton} from "@mui/material";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { signInWithPopup } from "firebase/auth";
-import { setGlobalState, useGlobalState } from "./Global";
-import {InputLabel} from "@mui/material";
-import First from "../LottieFiles/signup.json";
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import {MenuItem} from "@mui/material";
 import {
-    get,
     getDatabase,
-    ref,
-    set,
-    child,
-    remove,
-    update,
-    push,
-    DataSnapshot,
+    ref, update
 } from "firebase/database";
+import { getStorage } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
+import First from "../LottieFiles/signup.json";
+import { auth, provider } from "./config";
+import { setGlobalState } from "./Global";
 
-import { Avatar, Divider, TextField } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { HdrPlus, PlusOne, Subject } from "@mui/icons-material";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Divider, TextField } from "@mui/material";
 export default function ShopPlans() {
     const [price,setPrice]=useState()
     const [service,setService]=useState('')
@@ -142,12 +123,11 @@ export default function ShopPlans() {
                     </div>
                     <div>
                         <h1 className="text-[30px] font-[600] pl-5 pr-5 text-white text-center">
-                            lorem ipsum <br></br>
-                            lorem ipsum
+                            Shop Plans
                         </h1>
-                        <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
+                        {/* <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
                             lorem ipsum
-                        </p>
+                        </p> */}
                     </div>
                 </div>
                 <div className="md:w-1/2 ">
@@ -159,16 +139,17 @@ export default function ShopPlans() {
                     </div>
                     <div>
                         <h1 className="text-[30px] font-[500] text-center">Lets Fill in info!</h1>
-                        <p className="text-gray-400 text-center p-2">Client signup</p>
+                        <p className="text-gray-400 text-center p-2">Client Signup</p>
 
                     </div>
                     <div className="  justify-center place-content-center mt-5">
                         <div className="p-5 w-full">
                             <Divider>Create Your Pricings</Divider>
-                            <div className="grid">
+                            <br></br>
+                            <div style={{"text-align":"center"}} className="grid">
                                 <TextField label="Enter the Service Name" value={service} onChange={(event)=>{
 setService(event.target.value)
-                                }}></TextField> 
+                                }}></TextField> <br></br>
                                 
                                 <TextField   className="mt-16" type="number" value={price} onChange={(event)=>{
 setPrice(event.target.value)

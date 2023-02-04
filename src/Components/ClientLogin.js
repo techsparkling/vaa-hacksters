@@ -1,26 +1,17 @@
-import React from "react";
-import Lottie from "lottie-react";
-import { useState,useEffect } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth,provider } from "./config";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import {signInWithPopup} from "firebase/auth";
-import { setGlobalState ,useGlobalState} from "./Global";
-import First from "../LottieFiles/signup.json";
-import {
-  get,
-  getDatabase,
-  ref,
-  set,
-  child,
-  remove,
-  update,
-  push,
-  DataSnapshot,
-} from "firebase/database";
-import { Avatar, Divider, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Divider, TextField } from "@mui/material";
+import { signInWithPopup } from "firebase/auth";
+import {
+  getDatabase,
+  ref, update
+} from "firebase/database";
+import Lottie from "lottie-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import First from "../LottieFiles/signup.json";
+import { auth, provider } from "./config";
+import { setGlobalState } from "./Global";
 export default function ClientSignIn() {
   const [user, setUser] = useState({});
   const db = getDatabase();
@@ -86,7 +77,7 @@ useEffect(()=>{
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pt-5 pr-5 text-white text-lrfy">
               {" "}
-              LOGO
+              EventEase
             </h1>
           </div>
           <div className="grid justify-center place-items-center ">
@@ -98,11 +89,10 @@ useEffect(()=>{
           </div>
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pr-5 text-white text-center">
-              lorem ipsum <br></br>
-            lorem ipsum
+              Sign Up/In
             </h1>
             <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
-              lorem ipsum
+              as a shop owner
             </p>
           </div>
         </div>

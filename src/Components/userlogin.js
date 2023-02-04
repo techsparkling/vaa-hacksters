@@ -1,26 +1,17 @@
-import React from "react";
-import Lottie from "lottie-react";
-import { useState,useEffect } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth,provider } from "./config";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import {signInWithPopup} from "firebase/auth";
-import { setGlobalState ,useGlobalState} from "./Global";
-import First from "../LottieFiles/signup.json";
-import {
-  get,
-  getDatabase,
-  ref,
-  set,
-  child,
-  remove,
-  update,
-  push,
-  DataSnapshot,
-} from "firebase/database";
-import { Avatar, Divider, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Avatar, Divider, TextField } from "@mui/material";
+import { signInWithPopup } from "firebase/auth";
+import {
+  getDatabase,
+  ref, update
+} from "firebase/database";
+import Lottie from "lottie-react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import First from "../LottieFiles/signup.json";
+import { auth, provider } from "./config";
+import { setGlobalState } from "./Global";
 export default function SignUp() {
   const [user, setUser] = useState({});
   const db = getDatabase();
@@ -87,7 +78,7 @@ useEffect(()=>{
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pt-5 pr-5 text-white text-lrfy">
               {" "}
-              LOGO
+              EventEase
             </h1>
           </div>
           <div className="grid justify-center place-items-center ">
@@ -99,11 +90,10 @@ useEffect(()=>{
           </div>
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pr-5 text-white text-center">
-              lorem ipsum <br></br>
-            lorem ipsum
+              Sign Up/In
             </h1>
-            <p className="text-[15px] pl-5 pr-5 text-white text-center pb-5">
-              lorem ipsum
+            <p className="text-[17px] pl-5 pr-5 text-white text-center pb-5">
+              as a user
             </p>
           </div>
         </div>
@@ -115,13 +105,13 @@ useEffect(()=>{
             </div>
             <div>
                 <h1 className="text-[30px] font-[500] text-center">Lets Sign in!</h1>
-              <p className="text-gray-400 text-center p-2">lorem ipsum</p>
+              <p className="text-gray-400 text-center p-2">User Login</p>
             </div>
             <div className=" grid justify-center place-content-center mt-5">
                 <div className="grid gap-3 w-[500px]"> 
                 <TextField  id="outlined-basic" label="Email Id" variant="outlined" ></TextField>
                 <TextField  id="outlined-basic" label="Password" variant="outlined" ></TextField>
-                <button className="bg-blue-500 p-5 rounded text-white" onClick={handleClick}>
+                <button className="bg-blue-500 p-5 rounded text-white w-100" onClick={handleClick}>
                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>  Sign in  </button>
                 
                 <Divider>Or</Divider>
