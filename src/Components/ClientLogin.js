@@ -21,7 +21,7 @@ import {
 } from "firebase/database";
 import { Avatar, Divider, TextField } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export default function SignUp() {
+export default function ClientSignIn() {
   const [user, setUser] = useState({});
   const db = getDatabase();
   const [value,setValue] = useState('')
@@ -37,7 +37,7 @@ setGlobalState("profilePic",re.user.photoURL)
       localStorage.setItem("Email", re.user.email);
       localStorage.setItem("id", re.user.uid);
       localStorage.setItem("pic", re.user.photoURL);
-      localStorage.setItem("type","consumer")
+      localStorage.setItem("type","client")
       setUser({
         userid: re.user.uid,
         name: re.user.displayName,
@@ -46,27 +46,26 @@ setGlobalState("profilePic",re.user.photoURL)
       });
       
 
-      update(ref(db, "users/" + re.user.uid), {
+      update(ref(db, "client/" + re.user.uid), {
         userid: re.user.uid,
         name: re.user.displayName,
         email: re.user.email,
         pic:re.user.photoURL,
+
       })
         .then(() => {
-          return Navigate("/welcome");
+          return Navigate("/ShopDetails");
         })
         .catch((err) => {
-          Navigate("/welcome");
+          Navigate("/ShopDetails");
         });
-      // const user=result.user
+    
     });
   
       
   }
 useEffect(()=>{
-  if(!user.userid==""){
-    Navigate("/welcome")
-  }
+ 
 })
   useEffect(()=>{
     if (localStorage.id !== undefined) {
@@ -115,7 +114,7 @@ useEffect(()=>{
             </div>
             <div>
                 <h1 className="text-[30px] font-[500] text-center">Lets Sign in!</h1>
-              <p className="text-gray-400 text-center p-2">lorem ipsum</p>
+              <p className="text-gray-400 text-center p-2">Client Login</p>
             </div>
             <div className=" grid justify-center place-content-center mt-5">
                 <div className="grid gap-3 w-[500px]"> 
