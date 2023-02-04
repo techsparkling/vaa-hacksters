@@ -11,6 +11,7 @@ import ClientSignIn from './Components/ClientLogin';
 import ShopDetails from './Components/ShopDetails';
 import ShopPlans from './Components/ShopPlans';
 import ShopImg from './Components/ShopImg';
+import Fetching from './Components/Fetching';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     <Route index path="/welcome" element={<Welcome />}></Route>
     <Route index path="/shopplans" element={<ShopPlans />}></Route>
     <Route index path="/shopimg" element={<ShopImg />}></Route>
+    <Route index path="/fetching" element={<Fetching />}></Route>
 </Routes>
 
     </BrowserRouter>

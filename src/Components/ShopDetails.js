@@ -184,11 +184,11 @@ export default function ShopDetails() {
         >
         
           
-          <MenuItem value={10}>Healthcare facilities (hospitals, clinics, dentists, etc.)</MenuItem>
-          <MenuItem value={20}>Beauty and wellness services (spas, salons, massage therapy, etc.)</MenuItem>
-          <MenuItem value={30}>Automotive services (car dealerships, repair shops, oil change services, etc.)</MenuItem>
-          <MenuItem value={40}>Legal services (law firms, notaries, etc.)</MenuItem>
-          <MenuItem value={50}>Others</MenuItem>
+          <MenuItem value={"healthcare"}>Healthcare facilities (hospitals, clinics, dentists, etc.)</MenuItem>
+          <MenuItem value={"salon"}>Beauty and wellness services (spas, salons, massage therapy, etc.)</MenuItem>
+          <MenuItem value={"automotive"}>Automotive services (car dealerships, repair shops, oil change services, etc.)</MenuItem>
+          <MenuItem value={"legal"}>Legal services (law firms, notaries, etc.)</MenuItem>
+          <MenuItem value={"others"}>Others</MenuItem>
         </Select>
         </FormControl>
         </div>
