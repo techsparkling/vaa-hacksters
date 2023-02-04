@@ -8,6 +8,7 @@ import {
   set,
   push,
 } from "firebase/database";
+import { ToastContainer,toast } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -157,7 +158,17 @@ export default function Profile() {
               push(ref(db, "client/" + userkey + "/occupied/"), {
                 time: timevalue,
               }).then(() => {
-                // return Navigate("/welcome");
+
+                toast('Appointment Booked Successfully', {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  });
               });
             }}
           >
