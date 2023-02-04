@@ -105,6 +105,7 @@ background-image: url('./images/pexels-elevate-1267315.jpg');
   width: 90%;
   box-shadow:  0px 19px 20px #80808026;
   border-radius: 10px;
+  flex-direction: row-reverse;
 }
 .main{
   display:grid ; 
@@ -165,4 +166,5 @@ button{
 #item-right-img{
   border-radius: 20px;
   margin-left: 100px;
+  /* flex-shrink: 0; */
 }
