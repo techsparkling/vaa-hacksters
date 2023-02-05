@@ -28,7 +28,7 @@ setGlobalState("profilePic",re.user.photoURL)
       localStorage.setItem("Email", re.user.email);
       localStorage.setItem("id", re.user.uid);
       localStorage.setItem("pic", re.user.photoURL);
-      localStorage.setItem("type","client")
+     
       setUser({
         userid: re.user.uid,
         name: re.user.displayName,

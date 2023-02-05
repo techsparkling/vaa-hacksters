@@ -76,7 +76,7 @@ export default function ShopDetails() {
                 userid: localStorage.id,
                 name: localStorage.username,
                 email: localStorage.Email,
-                pic: localStorage.pic,
+                pic: localStorage.profilePic,
             });
             setValue(localStorage.getItem('email'))
         }

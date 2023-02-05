@@ -15,8 +15,11 @@ import { v4 } from "uuid";
 import First from "../LottieFiles/signup.json";
 import { auth, provider } from "./config";
 import { setGlobalState } from "./Global";
+import { setISODay } from "date-fns";
+
 export default function ShopImg() {
   const storage = getStorage();
+  const [id,setId]=useState()
   const [previewPic1, setPreviewPic1] = useState();
   const [profilePic1, setProfilePic1] = useState();
   const [previewPic2, setPreviewPic2] = useState();
@@ -38,11 +41,11 @@ export default function ShopImg() {
       setGlobalState("Email", re.user.email);
       setGlobalState("key", re.user.uid);
       setGlobalState("profilePic", re.user.photoURL);
-      localStorage.setItem("username", re.user.displayName);
-      localStorage.setItem("Email", re.user.email);
-      localStorage.setItem("id", re.user.uid);
-      localStorage.setItem("pic", re.user.photoURL);
-      localStorage.setItem("type", "client");
+      // localStorage.setItem("username", re.user.displayName);
+      // localStorage.setItem("Email", re.user.email);
+      // localStorage.setItem("id", re.user.uid);
+      // localStorage.setItem("pic", re.user.photoURL);
+      // localStorage.setItem("type", "client");
       setUser({
         userid: re.user.uid,
         name: re.user.displayName,
@@ -57,24 +60,25 @@ export default function ShopImg() {
         pic: re.user.photoURL,
       })
         .then(() => {
-          return Navigate("/ShopDetails");
+          // return Navigate("/ShopDetails");
         })
         .catch((err) => {
-          Navigate("/ShopDetails");
+          // Navigate("/ShopDetails");
         });
     });
   };
   useEffect(() => {});
   useEffect(() => {
-    if (localStorage.id !== undefined) {
-      setUser({
-        userid: localStorage.id,
-        name: localStorage.username,
-        email: localStorage.Email,
-        pic: localStorage.pic,
-      });
-      setValue(localStorage.getItem("email"));
-    }
+    // if (localStorage.id !== undefined) {
+    //   setUser({
+    //     userid: localStorage.id,
+    //     name: localStorage.username,
+    //     email: localStorage.Email,
+    //     pic: localStorage.pic,
+    //   });
+     
+    // }
+    setId(localStorage.id)
   }, []);
   const Navigate = useNavigate();
 
@@ -85,7 +89,7 @@ export default function ShopImg() {
           <div>
             <h1 className="text-[30px] font-[600] pl-5 pt-5 pr-5 text-white text-lrfy">
               {" "}
-              LOGO
+              EventEase
             </h1>
           </div>
           <div className="grid justify-center place-items-center ">
@@ -206,16 +210,17 @@ export default function ShopImg() {
                   if (profilePic1 !== undefined) {
                     let path = `images/${profilePic1.name + v4()}`;
                     const storageRef = ref_storage(storage, path);
-
+                    console.log(localStorage.id)
                     uploadBytes(storageRef, profilePic1).then(() => {
                       getDownloadURL(ref_storage(storage, path)).then((url) => {
+                        console.log(id)
                         update(
-                          ref(db, "client/" + localStorage.id + "/images"),
+                          ref(db, "client/" + id + "/images/"),
                           {
                             picture1: url,
                           }
                         ).then(() => {
-                          return Navigate("/shopplans");
+                          // return Navigate("/shopplans");
                         });
                       });
                     });

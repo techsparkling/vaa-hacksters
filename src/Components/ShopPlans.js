@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { signInWithPopup } from "firebase/auth";
 import {
     getDatabase,
-    ref, update
+    ref, update,push
 } from "firebase/database";
 import { getStorage } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,12 @@ export default function ShopPlans() {
     const [price,setPrice]=useState()
     const [service,setService]=useState('')
     let services_object={}
+    let services_size=Object.keys(services_object).length
     function add(){
     
-        let services_size=Object.keys(services_object).length
-      services_object[services_size+1]={name:service,price:price}
+    services_size=services_size+1
+    console.log( services_size)
+      services_object[services_size]={name:service,price:price}
       console.log(services_object)
       let holder=document.getElementById('price_holder')
       let div= document.createElement('div')
@@ -57,11 +59,11 @@ export default function ShopPlans() {
             setGlobalState("Email", re.user.email)
             setGlobalState("key", re.user.uid)
             setGlobalState("profilePic", re.user.photoURL)
-            localStorage.setItem("username", re.user.displayName);
-            localStorage.setItem("Email", re.user.email);
-            localStorage.setItem("id", re.user.uid);
-            localStorage.setItem("pic", re.user.photoURL);
-            localStorage.setItem("type", "client")
+            // localStorage.setItem("username", re.user.displayName);
+            // localStorage.setItem("Email", re.user.email);
+            // localStorage.setItem("id", re.user.uid);
+            // localStorage.setItem("pic", re.user.photoURL);
+            // localStorage.setItem("type", "client")
             setUser({
                 userid: re.user.uid,
                 name: re.user.displayName,
@@ -163,8 +165,9 @@ setPrice(event.target.value)
                             <div>
                             <button className="bg-black p-5 rounded text-white w-full mt-5" 
                                             onClick={()=>{
-                                                update(ref(db, "client/" + localStorage.id), {
-                                                   plans:services_object
+                                                console.log(services_object)
+                                                update(ref(db, "client/" + localStorage.id+"/plans"), {
+                                                   ...services_object
                                     
                                                 })
                                                     .then(() => {

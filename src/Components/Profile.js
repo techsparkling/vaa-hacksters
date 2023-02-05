@@ -115,7 +115,7 @@ export default function Profile() {
     setUserKey(snapshot.val().userid);
     setDescription(snapshot.val().description);
     setLocation(snapshot.val().location);
-    setProfileUrl(snapshot.val().pic);
+    setProfileUrl(snapshot.val().profilePic);
     setPhoto1(snapshot.val().images.picture1);
 
     setPhoto2(snapshot.val().images.picture2);
