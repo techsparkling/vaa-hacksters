@@ -10,9 +10,10 @@ import {
   Database,
 } from "firebase/database";
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate,useParams } from "react-router-dom";
 
 export default function Fetching() {
+  let { type } = useParams();
   const [userid, setUserid] = useState("");
 
   setTimeout(() => {}, 500);
@@ -47,6 +48,7 @@ export default function Fetching() {
 
           const dbref = ref(db);
           get(child(dbref, "/client/" + path)).then((snapshot) => {
+            if(type==snapshot.val().industry){
             console.log(snapshot.val().userid);
 
             const holder = document.getElementById("holder");
@@ -101,7 +103,9 @@ export default function Fetching() {
             maindiv.appendChild(leftdiv);
             maindiv.appendChild(rightdiv);
             holder.appendChild(maindiv);
-          });
+          }
+       
+        });
         }
       }
     });

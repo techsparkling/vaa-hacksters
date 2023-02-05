@@ -39,7 +39,7 @@ theme="light"
     <Route index path="/shopplans" element={<ShopPlans />}></Route>
     <Route index path="/shopimg" element={<ShopImg />}></Route>
     <Route index path="/client/:id" element={<Profile />}></Route>
-    <Route index path="/fetching" element={<Fetching />}></Route>
+    <Route index path="/fetching/:type" element={<Fetching />}></Route>
 </Routes>
 
     </BrowserRouter>

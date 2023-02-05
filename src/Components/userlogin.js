@@ -2,10 +2,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Divider, TextField } from "@mui/material";
 import { signInWithPopup } from "firebase/auth";
-import {
-  getDatabase,
-  ref, update
-} from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,33 +12,32 @@ import { setGlobalState } from "./Global";
 export default function SignUp() {
   const [user, setUser] = useState({});
   const db = getDatabase();
-  const [value,setValue] = useState('')
-  const handleClick =()=>{
+  const [value, setValue] = useState("");
+  const handleClick = () => {
     signInWithPopup(auth, provider).then((re) => {
       console.log(re);
       console.log(re.user.uid);
-setGlobalState("Name",re.user.displayName)
-setGlobalState("Email",re.user.email)
-setGlobalState("key",re.user.uid)
-setGlobalState("profilePic",re.user.photoURL)
+      setGlobalState("Name", re.user.displayName);
+      setGlobalState("Email", re.user.email);
+      setGlobalState("key", re.user.uid);
+      setGlobalState("profilePic", re.user.photoURL);
       localStorage.setItem("username", re.user.displayName);
       localStorage.setItem("Email", re.user.email);
       localStorage.setItem("id", re.user.uid);
       localStorage.setItem("pic", re.user.photoURL);
-      localStorage.setItem("type","consumer")
+      localStorage.setItem("type", "consumer");
       setUser({
         userid: re.user.uid,
         name: re.user.displayName,
         email: re.user.email,
         pic: re.user.photoURL,
       });
-      
 
       update(ref(db, "users/" + re.user.uid), {
         userid: re.user.uid,
         name: re.user.displayName,
         email: re.user.email,
-        pic:re.user.photoURL,
+        pic: re.user.photoURL,
       })
         .then(() => {
           return Navigate("/welcome");
@@ -51,15 +47,16 @@ setGlobalState("profilePic",re.user.photoURL)
         });
       // const user=result.user
     });
-  
-      
-  }
-useEffect(()=>{
-  if(!user.userid==""){
-    Navigate("/welcome")
-  }
-})
-  useEffect(()=>{
+  };
+  useEffect(() => {
+    if (!user.userid == "") {
+      Navigate("/welcome");
+    }
+    else{
+      console.log("issue with local storage")
+    }
+  });
+  useEffect(() => {
     if (localStorage.id !== undefined) {
       setUser({
         userid: localStorage.id,
@@ -67,9 +64,10 @@ useEffect(()=>{
         email: localStorage.Email,
         pic: localStorage.pic,
       });
-      setValue(localStorage.getItem('email'))}
-  },[])
-   const Navigate=useNavigate();
+      setValue(localStorage.getItem("email"));
+    }
+  }, []);
+  const Navigate = useNavigate();
 
   return (
     <div className="grid h-screen place-items-center">
@@ -98,27 +96,46 @@ useEffect(()=>{
           </div>
         </div>
         <div className="md:w-1/2 ">
-            <div className="p-5 grid mt-[80px] place-content-center">
-                <Avatar sx={{width:"100px",
-                            height:'100px'
-            }}></Avatar>
+          <div className="p-5 grid mt-[80px] place-content-center">
+            <Avatar sx={{ width: "100px", height: "100px" }}></Avatar>
+          </div>
+          <div>
+            <h1 className="text-[30px] font-[500] text-center">
+              Lets Sign in!
+            </h1>
+            <p className="text-gray-400 text-center p-2">User Login</p>
+          </div>
+          <div className=" grid justify-center place-content-center mt-5">
+            <div className="grid gap-3 w-[500px]">
+              <TextField
+                id="outlined-basic"
+                label="Email Id"
+                variant="outlined"
+              ></TextField>
+              <TextField
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+              ></TextField>
+              <button
+                className="bg-blue-500 p-5 rounded text-white w-100"
+                onClick={handleClick}
+              >
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon> Sign in{" "}
+              </button>
+
+              <Divider>Or</Divider>
+              <button
+                className="bg-black p-5 rounded text-white"
+                onClick={() => {
+                  handleClick();
+                }}
+              >
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon> Sign in with
+                google{" "}
+              </button>
             </div>
-            <div>
-                <h1 className="text-[30px] font-[500] text-center">Lets Sign in!</h1>
-              <p className="text-gray-400 text-center p-2">User Login</p>
-            </div>
-            <div className=" grid justify-center place-content-center mt-5">
-                <div className="grid gap-3 w-[500px]"> 
-                <TextField  id="outlined-basic" label="Email Id" variant="outlined" ></TextField>
-                <TextField  id="outlined-basic" label="Password" variant="outlined" ></TextField>
-                <button className="bg-blue-500 p-5 rounded text-white w-100" onClick={handleClick}>
-                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>  Sign in  </button>
-                
-                <Divider>Or</Divider>
-                <button className="bg-black p-5 rounded text-white" onClick={()=>{handleClick()}}>
-                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>  Sign in with google </button>
-                </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>

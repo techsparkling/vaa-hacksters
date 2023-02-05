@@ -127,7 +127,7 @@ export default function Profile() {
     <div>
       <div
         id="appointment"
-        className="p-5 absolute w-full h-full flex justify-center z-[10] backdrop-blur-lg content-center"
+        className="p-5 absolute w-full h-full hidden flex justify-center z-[10] backdrop-blur-lg content-center"
       >
         <div className="bg-white shadow-lg p-5 h-[400px] w-[400px] rounded-xl ">
           <div>

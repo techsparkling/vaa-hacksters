@@ -17,6 +17,7 @@ import First from "../LottieFiles/signup.json";
 import { auth, provider } from "./config";
 import { setGlobalState } from "./Global";
 export default function ShopDetails() {
+    const [location,setLocation]=useState()
     const [previewPic,setPreviewPic]=useState()
   const [profilePic,setProfilePic]=useState()
     const [user, setUser] = useState({});
@@ -124,6 +125,9 @@ export default function ShopDetails() {
                             <TextField id="outlined-basic" label="Name Of Your Business" value={name} onChange={(event)=>{
                                 setName(event.target.value)
                             }}></TextField>
+                              <TextField id="outlined-basic" label="Location" value={location} onChange={(event)=>{
+                                setLocation(event.target.value)
+                            }}></TextField>
 
                             <div className="mt-5 w-full">
 <FormControl fullWidth sx={{}}>
@@ -222,6 +226,7 @@ export default function ShopDetails() {
                                                 description:description,
                                                 industry:industry,
                                                 profilePic:url,
+                                                location:location
                                 
                                             }).then(()=>{
                                                 return Navigate("/shopplans")

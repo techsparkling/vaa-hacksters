@@ -1,3 +1,5 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Avatar, Box } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
 import React, { useEffect, useState } from "react";
@@ -8,6 +10,7 @@ export default function Welcome() {
   const [email, setEmail] = useState();
   const [profilePic, setProfilePic] = useState();
   const [key, setKey] = useState();
+  const [search,setSearch]=useState();
   const [user,setUser]=useState(false)
   const Navigate = useNavigate();
   useEffect(() => {
@@ -54,6 +57,7 @@ export default function Welcome() {
                 <ul className="p-5">
                     <li className="p-5 clickable">Profile</li>
                     <li className="p-5 clickable">Settings</li>
+                    <li className="p-5 clickable" onClick={()=>{Navigate("/client")}}>Login as Business</li>
                     <li className="p-5 clickable"><button onClick={localStorage.clear()}>Log Out</button></li>
                 </ul>
               </h1>
@@ -74,7 +78,15 @@ export default function Welcome() {
               type="text"
               className="rounded-lg px-20 py-3"
               placeholder="Search For Services"
+              value={search}
+              onChange={(event)=>{
+                setSearch(event.target.value)
+              }}
+           
             />
+               <button className="bg-black px-2 py-2 rounded-xl" onClick={()=>{
+                Navigate("/fetching/"+search)
+               }}><FontAwesomeIcon className="text-white"icon={faSearch}></FontAwesomeIcon></button>
           </div>
         </div>
       </section>
@@ -83,44 +95,63 @@ export default function Welcome() {
         className="cards_home flex flex-wrap justify-center items-center space-x-5 rounded-lg h-50 min-w-[75%] absolute top-[30rem] left-[50%] translate-x-[-50%] bg-white"
         style={{ boxShadow: "0 8px 26px 0 rgba(0,0,0,0.08)" }}
       >
-        <a href="">
+        <a href="" onClick={()=>{
+          Navigate("/fetching/salon")
+        }}>
           <div className="cursor-pointer flex p-2 flex-col justify-center items-center space-y-4 m-6 hover:bg-gray-100 hover:rounded-md hover:transition">
             <img
               src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757635235-1a139e.png"
               alt=""
               className="object-cover"
             />
-            <p>Salon for Women</p>
+            <p>Salon </p>
           </div>
         </a>
 
-        <a href="">
+        <a href="" onClick={()=>{
+          Navigate("/fetching/healthcare")
+        }}>
           <div className="cursor-pointer flex flex-col justify-center items-center space-y-4 m-6 hover:bg-gray-100 hover:rounded-md hover:transition p-2">
             <img
               src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png"
               alt=""
             />
-            <p>Salon for Women</p>
+            <p>Clinic</p>
           </div>
           </a>
-          <a href="">
+          <a href="" onClick={()=>{
+            Navigate("/fetching/automotive")
+          }}>
               <div className="cursor-pointer flex flex-col justify-center items-center space-y-4 m-6 hover:bg-gray-100 hover:rounded-md hover:transition p-2">
                 <img
                   src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_1312fb60.png"
                   alt=""
                   className="h-16"
                 />
-                <p>Salon for Women</p>
+                <p>Automotive</p>
               </div>
             </a>
 
-            <a href="">
+            <a href="" onClick={()=>{
+              Navigate("/fetching/legal")
+            }}>
               <div className="cursor-pointer flex flex-col justify-center items-center space-y-4 m-6 hover:bg-gray-100 hover:rounded-md hover:transition p-2">
                 <img
                   src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png"
                   alt=""
                 />
-                <p>Salon for Women</p>
+                <p>Legal Service</p>
+              </div>
+            </a>
+            <a href="" onClick={()=>{
+              Navigate("/fetching/others")
+            }}>
+              <div className="cursor-pointer flex flex-col justify-center items-center space-y-4 m-6 hover:bg-gray-100 hover:rounded-md hover:transition p-2">
+                <img
+                  src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png"
+                  alt=""
+                />
+                <p>Others</p>
               </div>
             </a>
         </div>
